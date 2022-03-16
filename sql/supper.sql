@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS shop(
 
 --table 3: item
 CREATE TABLE IF NOT EXISTS item(
-	shopname VARCHAR(32) REFERENCES shop(shopname),
+	shopname VARCHAR(32) REFERENCES shop(shopname) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
 	item VARCHAR(32) NOT NULL,
 	price MONEY NOT NULL,
 	PRIMARY KEY (shopname, item),
@@ -36,23 +36,23 @@ CREATE TABLE IF NOT EXISTS orderid(
 	opening TIME(0),
 	closing TIME(0),
 	order_date DATE,
-	order_by TIME(0) -- get data from mockaroo auto-generated --
+	order_by TIME(0)
 	CHECK (order_by > opening AND order_by < closing),
 	delivery_status VARCHAR(32)
 	CHECK (delivery_status IN ('Order Received', 'Vendor Preparing', 
 							   'Food Dispatched', 'Food Delivered')),
-	FOREIGN KEY(shopname, opening, closing) REFERENCES shop(shopname, opening, closing),
-	FOREIGN KEY (creator, hall) REFERENCES buyer(username, hall)
+	FOREIGN KEY(shopname, opening, closing) REFERENCES shop(shopname, opening, closing) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY (creator, hall) REFERENCES buyer(username, hall) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED
 	
 );
 
 --table 5: orders
 CREATE TABLE IF NOT EXISTS orders(
-	username VARCHAR(32) REFERENCES buyer(username),
-	group_order_id INTEGER REFERENCES orderid(group_order_id),
+	username VARCHAR(32) REFERENCES buyer(username) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+	group_order_id INTEGER REFERENCES orderid(group_order_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
 	shopname VARCHAR(32),
 	item VARCHAR(32),
 	qty INTEGER NOT NULL CHECK(qty >= 1),
-	FOREIGN KEY (shopname,item) REFERENCES item(shopname,item),
+	FOREIGN KEY (shopname,item) REFERENCES item(shopname,item) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
 	PRIMARY KEY (username, group_order_id, item));
 	
