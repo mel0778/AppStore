@@ -13,10 +13,11 @@ def index(request):
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
-        customers = cursor.fetchall()
+        cursor.execute("SELECT * FROM buyer ORDER BY username")
+        buyers = cursor.fetchall()
+        # list of tuples
 
-    result_dict = {'records': customers}
+    result_dict = {'records': buyers}
 
     return render(request,'app/index.html',result_dict)
 
