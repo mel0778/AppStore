@@ -2,7 +2,8 @@
 CREATE TABLE IF NOT EXISTS buyer(
 	username VARCHAR(32) PRIMARY KEY,
 	password VARCHAR(32) NOT NULL,
-	name VARCHAR(128) NOT NULL,
+	first_name VARCHAR(128) NOT NULL,
+	last_name VARCHAR(128) NOT NULL,
 	phone_number INTEGER UNIQUE NOT NULL CHECK (phone_number BETWEEN 80000000 AND 99999999),
 	hall VARCHAR(8) NOT NULL CHECK (hall IN  ('RH','TH','SH', 'KR','EH','PGP','KE7','PGP')),
 	wallet_balance INTEGER NOT NULL CHECK (wallet_balance >= 5),
