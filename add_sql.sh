@@ -33,5 +33,5 @@ psql ${URI} -f sql/SupperSchema.sql
 psql ${URI} -f sql/SupperBuyer.sql
 psql ${URI} -f sql/SupperShop.sql
 psql ${URI} -f sql/SupperItem.sql
-psql ${URI} -f sql/SupperOrders.sql
 psql ${URI} -f sql/SupperOrderid.sql
+psql ${URI} -f sql/SupperOrders.sql
