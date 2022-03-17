@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS buyer(
 	last_name VARCHAR(128) NOT NULL,
 	phone_number INTEGER UNIQUE NOT NULL CHECK (phone_number BETWEEN 80000000 AND 99999999),
 	hall VARCHAR(32) NOT NULL CHECK (hall IN  ('Raffles','Temasek','Sheares', 'Kent Ridge','Eusoff','King Edward VII')),
-	wallet_balance MONEY NOT NULL CHECK (wallet_balance >= 5),
+	wallet_balance MONEY NOT NULL CHECK (wallet_balance >= MONEY(5)),
 	UNIQUE (username,hall)); 
 
 --table 2: shop
