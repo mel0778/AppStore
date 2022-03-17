@@ -1,3 +1,4 @@
+
 --table 1: buyer
 CREATE TABLE IF NOT EXISTS buyer(
 	username VARCHAR(32) PRIMARY KEY,
@@ -5,8 +6,8 @@ CREATE TABLE IF NOT EXISTS buyer(
 	first_name VARCHAR(128) NOT NULL,
 	last_name VARCHAR(128) NOT NULL,
 	phone_number INTEGER UNIQUE NOT NULL CHECK (phone_number BETWEEN 80000000 AND 99999999),
-	hall VARCHAR(8) NOT NULL CHECK (hall IN  ('RH','TH','SH', 'KR','EH','PGP','KE7','PGP')),
-	wallet_balance INTEGER NOT NULL CHECK (wallet_balance >= 5),
+	hall VARCHAR(32) NOT NULL CHECK (hall IN  ('Raffles','Temasek','Sheares', 'Kent Ridge','Eusoff','King Edward VII')),
+	wallet_balance MONEY NOT NULL CHECK (wallet_balance >= 5),
 	UNIQUE (username,hall)); 
 
 --table 2: shop
@@ -56,4 +57,3 @@ CREATE TABLE IF NOT EXISTS orders(
 	qty INTEGER NOT NULL CHECK(qty >= 1),
 	FOREIGN KEY (shopname,item) REFERENCES item(shopname,item) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
 	PRIMARY KEY (username, group_order_id, item));
-	
